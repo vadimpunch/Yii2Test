@@ -28,15 +28,6 @@ class m190518_183938_items extends Migration
             'category_id'
         );
 
-
-        $this->addForeignKey(
-            'fk-items-category_id',
-            'items',
-            'category_id',
-            'categories',
-            'id',
-            'CASCADE'
-        );
     }
 
 
@@ -52,10 +43,6 @@ class m190518_183938_items extends Migration
             'items'
             );
 
-        $this->dropForeignKey(
-            'fk-items-category_id',
-            'items'
-        );
 
 
         $this->dropTable('items');

@@ -24,19 +24,10 @@ class m190518_213553_comments extends Migration
 
         $this->createIndex(
             'idx-comments-user_id',
-            'users',
+            'comments',
             'user_id'
         );
 
-
-        $this->addForeignKey(
-            'fk-comments-user_id',
-            'comments',
-            'user_id',
-            'users',
-            'id',
-            'NO ACTION'
-        );
     }
 
 
@@ -47,10 +38,6 @@ class m190518_213553_comments extends Migration
     {
         $this->dropIndex(
             'idx-comments-user_id',
-            'comments'
-        );
-        $this->dropForeignKey(
-            'fk-comments-user_id',
             'comments'
         );
 
