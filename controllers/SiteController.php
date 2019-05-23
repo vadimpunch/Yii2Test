@@ -125,4 +125,17 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function  actionChangeLang()
+    {
+
+
+        switch (Yii::$app->language) {
+            case 'ru':   Yii::$app->language =  'en-US'; break;
+            case 'en-US':   Yii::$app->language =  'ru'; break;
+        }
+
+
+        return $this->redirect(Yii::$app->request->referrer);
+    }
 }

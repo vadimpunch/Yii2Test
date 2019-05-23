@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -9,9 +10,13 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\Categories;
+use yii\helpers\Url;
 
 AppAsset::register($this);
-?>
+
+$categories = new Categories;
+$categories = $categories->getCategories() ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -21,6 +26,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <?= Html::cssFile('@web/css/bootstrap4.css') ?>
     <?php $this->head() ?>
 </head>
 <body>
@@ -29,25 +35,25 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Yii::t('app', 'Test task'),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar navbar-expand-sm bg-light navbar-light',
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar navbar-nav navbar-left'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']],
+            ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']],
+            ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+            ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    Yii::t('app', 'Logout') . '(' . Yii::$app->user->identity->username . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
@@ -62,15 +68,30 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="vertical-menu-custom">
+                    <?php foreach ($categories as $category): ?>
+                        <a href="<?= Url::to(['/items/category/' . $category->id]) ?>"><?= $category->title ?></a>
+                    <?php endforeach; ?>
+                    <a href="<?= Url::to(['/categories/add-category-form']) ?>" class="add-category">Add category</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <?= Alert::widget() ?>
+                <?= $content ?>
+            </div>
+        </div>
     </div>
+
+
+</div>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
+        <p class="pull-left">&copy; <?= Yii::t('app', 'My company') ?><?= date('Y') ?></p>
+        <p> &nbsp; &nbsp;<?= $this->render('language'); ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>

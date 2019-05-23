@@ -11,7 +11,12 @@ body {
 }
 
 .wrap > .container {
-    padding: 70px 15px 20px;
+    padding: 0px 0px 20px;
+    margin: 0;
+}
+
+.wrap > .navbar {
+    margin: 0;
 }
 
 .footer {
@@ -91,6 +96,7 @@ a.desc:after {
 }
 
 /* align the logout "link" (button in form) of the navbar */
+
 .nav li > form > button.logout {
     padding: 15px;
     border: none;
@@ -113,3 +119,85 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.vertical-menu-custom {
+    display: inline-block;
+    width: 200px; /* Set a width if you like */
+    height: 100%;
+    position: absolute;
+    background-color: #f8f9fa;
+}
+
+.vertical-menu-custom a {
+    background-color: #f8f9fa; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu-custom a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu-custom a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;
+}
+
+.card {
+    margin: 10px;
+}
+
+.item-img {
+    margin-top: 40px;
+    width: 300px;
+    height: 300px;
+    border: 4px solid grey;
+    border-radius: 2px;
+}
+
+.description {
+    padding-right: 50px;
+    margin-bottom: 20px;
+}
+
+.comment {
+    margin-top: 30px;
+    border: 2px dashed grey;
+    border-radius: 2px;
+}
+
+.comment .user-inf {
+    border-right: 2px dashed grey;
+    text-align: center;
+    font-size: 1.3em;
+    padding-top:5px;
+}
+
+.comment .text {
+    text-align: justify;
+    padding-top:5px;
+}
+
+.comment-form {
+    margin-top: 50px;
+}
+
+.vertical-menu-custom .add-category {
+    background-color: #49e6b4;
+}
+
+.date {
+    text-align: right;
+}
+
+.add-item {
+    position: absolute;
+    top: 50px;
+    left: 900px;
+
+
+}
+
+

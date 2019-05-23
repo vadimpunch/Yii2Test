@@ -17,9 +17,10 @@ class m190518_213553_comments extends Migration
             'created_at' => $this->datetime()->notNull(),
             'updated_at' => $this->datetime(),
             'text' => $this->text()->notNull(),
-            'user_name' => $this->string()->notNull(),
-            'user_email' => $this->string()->notNull(),
+            'user_name' => $this->string(),
+            'user_email' => $this->string(),
             'user_id' => $this->integer(),
+            'item_id' => $this->integer()
         ]);
 
         $this->createIndex(
@@ -27,6 +28,8 @@ class m190518_213553_comments extends Migration
             'comments',
             'user_id'
         );
+
+
 
     }
 

@@ -47,12 +47,40 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
              'showScriptName' => false,
+            'class' => 'codemix\localeurls\UrlManager',
+            'languages' => ['ru', 'en'],
+            'enableDefaultLanguageUrlCode' => 'true',
             'rules' => [
                 '' => 'site/index',
                 'about' => 'site/about',
+                'items' => 'items/get-all-items',
+                'items/category/<id:\d+>' => 'items/get-items-by-category-id',
+                'item/<id:\d+>' => 'items/get-item',
+                'add-item' => 'items/add-item-form',
+                'add-item-submit' => 'items/add-item',
+                'update-item/<id:\d+>' => 'items/update-item',
+                'delete-item/<id:\d+>' => 'items/delete-item',
+                'add-comment' => 'comments/add-comment',
+                'edit-comment/<id:\d+>' => 'comments/update-comment',
+                'delete-comment/<id:\d+>' => 'comments/delete-comment',
 //                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
+
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/translations',
+                    'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app'       => 'app.php',
+                    ],
+                ],
+            ],
+        ],
+
+
 
     ],
     'params' => $params,
